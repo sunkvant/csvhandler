@@ -1,14 +1,14 @@
-# Csvhandler
-Консольное приложение, осуществляющее поиск столбцов по шаблону.
+п»ї# Csvhandler
+РљРѕРЅСЃРѕР»СЊРЅРѕРµ РїСЂРёР»РѕР¶РµРЅРёРµ, РѕСЃСѓС‰РµСЃС‚РІР»СЏСЋС‰РµРµ РїРѕРёСЃРє СЃС‚РѕР»Р±С†РѕРІ РїРѕ С€Р°Р±Р»РѕРЅСѓ.
 
-### Параметры:
-```-i``` -путь к входному файлу (*.csv).
+### РџР°СЂР°РјРµС‚СЂС‹:
+```-i``` -РїСѓС‚СЊ Рє РІС…РѕРґРЅРѕРјСѓ С„Р°Р№Р»Сѓ (*.csv).
 
-```-q``` -шаблон для поиска(Может быть регулярным выражением).
+```-q``` -С€Р°Р±Р»РѕРЅ РґР»СЏ РїРѕРёСЃРєР°(РњРѕР¶РµС‚ Р±С‹С‚СЊ СЂРµРіСѓР»СЏСЂРЅС‹Рј РІС‹СЂР°Р¶РµРЅРёРµРј).
 
-```-o``` -путь к файлу с результатами работы (*.csv или *.txt)
+```-o``` -РїСѓС‚СЊ Рє С„Р°Р№Р»Сѓ СЃ СЂРµР·СѓР»СЊС‚Р°С‚Р°РјРё СЂР°Р±РѕС‚С‹ (*.csv РёР»Рё *.txt)
 
-#### Пример входного CSV:
+#### РџСЂРёРјРµСЂ РІС…РѕРґРЅРѕРіРѕ CSV:
 
 ```csv
 The Internet was invented in the late by the Defense Department 
@@ -17,11 +17,11 @@ computer is a large powerful computer.com shared by many users The idea
 when users looked.com for a way to talk to each other electronically By
 the Internet had begun to develop into the form we know today Electronic 
 mail because once the message.com is typed out Internet arrives in the electronic
-mail box of the recipient within minutes It’s better to use e-mail to contact 
+mail box of the recipient within minutes ItвЂ™s better to use e-mail to contact 
 because Internet is cheaper for long distances than the phone People can
 share their interests through the Internet and it makes it very easy to 
 ```
-#### Пример выходного CSV с шаблоном поиска "Internet":
+#### РџСЂРёРјРµСЂ РІС‹С…РѕРґРЅРѕРіРѕ CSV СЃ С€Р°Р±Р»РѕРЅРѕРј РїРѕРёСЃРєР° "Internet":
 
 ```java
 Internet was is users Internet because box Internet their 
@@ -29,7 +29,7 @@ the just computer.com way develop is within long Internet
 the Internet many to form Internet better the makes
 ```
 
-#### Пример выходного TXT с шаблоном поиска "Internet":
+#### РџСЂРёРјРµСЂ РІС‹С…РѕРґРЅРѕРіРѕ TXT СЃ С€Р°Р±Р»РѕРЅРѕРј РїРѕРёСЃРєР° "Internet":
 
 ```java
 Internet
@@ -62,5 +62,5 @@ makes
 ```
 
 ```
- Приложение находиться в папке target/csvhandler.jar
+ РџСЂРёР»РѕР¶РµРЅРёРµ РЅР°С…РѕРґРёС‚СЊСЃСЏ РІ РїР°РїРєРµ target/csvhandler.jar
 ```
