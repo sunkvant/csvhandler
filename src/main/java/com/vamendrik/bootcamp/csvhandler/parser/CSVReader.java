@@ -7,6 +7,9 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+import java.util.regex.PatternSyntaxException;
 
 import org.apache.log4j.Logger;
 
@@ -19,7 +22,7 @@ public class CSVReader {
 	private String template;
 	private List<List<String>> array = new ArrayList<List<String>>();
 	private static final Logger logger = Logger.getLogger(CSVReader.class);
-	
+
 	public CSVReader(Config config) {
 
 		this.sourceFile = config.getSourceFile();
@@ -65,17 +68,27 @@ public class CSVReader {
 			String[] format = outputFile.getName().split("[.]");
 
 			String fileFormat = format[format.length - 1];
+			
+			boolean find=false;
 
 			if (fileFormat.equals("csv")) {
 				
-				boolean find=false;
+				
 
 				FileWriter fw=new FileWriter(this.outputFile);
+				
+				Pattern pattern=Pattern.compile(this.template);
+				
+				Matcher match;
 				
 				for (int i = 0; i < array.size(); i++) {
 					for (int j = 0; j < array.get(i).size(); j++) {
 						
-						if (array.get(i).get(j).equals(this.template)){
+						match=pattern.matcher(array.get(i).get(j));
+						
+						
+						
+						if (match.matches()) {
 							
 							find=true;
 							
@@ -87,34 +100,37 @@ public class CSVReader {
 							}
 							
 							fw.write("\r\n");
+							
+							break;
 						}
-
+						
 					}
 
 				}
 				
 				fw.close();
 				
-				if (find) {
-					
-					logger.info("Найдены столбцы содержащие шаблон для поиска. Результат обработкм в "+this.outputFile.getPath());
-				} else {
-					
-					logger.info("Не найдено ни одного столбца, содержащего шаблон для поиска!");
-					this.outputFile.delete();
-					
-				}
-
 			}
 
-			if (fileFormat.equals("txt")) {
 
+			if (fileFormat.equals("txt")) {
+				
 				FileWriter fw=new FileWriter(this.outputFile);
+
+				Pattern pattern=Pattern.compile(this.template);
+				
+				Matcher match;
 				
 				for (int i = 0; i < array.size(); i++) {
 					for (int j = 0; j < array.get(i).size(); j++) {
 						
-						if (array.get(i).get(j).equals(this.template)){
+						match=pattern.matcher(array.get(i).get(j));
+						
+						
+						
+						if (match.matches()) {
+							
+							find=true;
 							
 							for(int k=0; k<array.get(i).size(); k++) {
 								
@@ -123,6 +139,7 @@ public class CSVReader {
 								
 							}
 							
+							break;
 							
 						}
 
@@ -134,9 +151,26 @@ public class CSVReader {
 			}
 
 
-			
+			if (find) {
+				
+				logger.info("Найдены столбцы содержащие шаблон для поиска. Результат обработкм в "+this.outputFile.getPath());
+			} else {
+				
+				logger.info("Не найдено ни одного столбца, содержащего шаблон для поиска!");
+				this.outputFile.delete();
+				
+			}
 
-		} catch (ArrayIndexOutOfBoundsException e) {
+
+		} 
+		
+		catch (PatternSyntaxException e) {
+			
+			logger.error("Синтаксическая ошибка в регулярном выражении!");
+			System.exit(0);
+		}
+		
+		catch (ArrayIndexOutOfBoundsException e) {
 
 			logger.error("Структура файла не корректна!");
 			System.exit(0);
